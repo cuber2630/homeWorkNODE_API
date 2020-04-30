@@ -29,7 +29,14 @@ void MyObject::Destructor(napi_env env,
 
 //=====以下還沒改================
 Napi::Object MyObject::Init(Napi::Env env, Napi::Object exports) {
-  Napi::HandleScope scope(env);
+  
+  napi_status status;
+  napi_property_descriptor properties[] = {
+      {"value", 0, 0, GetValue, SetValue, 0, napi_default, 0},
+      DECLARE_NAPI_METHOD("plusOne", PlusOne),
+      DECLARE_NAPI_METHOD("multiply", Multiply),
+  };
+  
 
   Napi::Function func =
       DefineClass(env,
