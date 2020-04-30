@@ -5,10 +5,10 @@ console.log('test napi.h start');
 
 var obj = new addon.MyObject(10);
 console.log( obj.plusOne() ); // 11
-console.log( obj.multiply().value() ); // 11
-console.log( obj.multiply(10).value() ); // 110
+console.log( obj.multiply().value ); // 11
+console.log( obj.multiply(10).value ); // 110
 var newobj = obj.multiply(-1);
-console.log( newobj.value() ); // -11
+console.log( newobj.value ); // -11
 console.log( obj === newobj ); // false
 
 console.log( 'get math' ); // false

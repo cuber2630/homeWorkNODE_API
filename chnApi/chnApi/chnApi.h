@@ -3,7 +3,7 @@
 
 #include <node_api.h>
 
-class MyObject : public Napi::ObjectWrap<MyObject> {
+class MyObject {
  public:
   static napi_value Init(napi_env env, napi_value exports);
   static void Destructor(napi_env env, void* nativeObject, void* finalize_hint);
@@ -32,6 +32,7 @@ class MyObject : public Napi::ObjectWrap<MyObject> {
   // Napi::Value GetMathVersion(const Napi::CallbackInfo& info);
   // Napi::Value GetGameBaseValue(const Napi::CallbackInfo& info);  
 
+  static napi_ref constructor;
   double value_;
   napi_env env_;
   napi_ref wrapper_;
