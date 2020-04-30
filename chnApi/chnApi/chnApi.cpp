@@ -9,9 +9,25 @@ using namespace std;
 //api 版號
 #define CHN_API_VERSION "chnapi20200415v0.1"
 
-Napi::FunctionReference MyObject::constructor;
-static ChnMathApi	MathEnter;
+napi_ref MyObject::constructor;
 
+MyObject::MyObject(double value)
+    : value_(value), env_(nullptr), wrapper_(nullptr) {}
+
+MyObject::~MyObject() {
+  napi_delete_reference(env_, wrapper_);
+}
+
+void MyObject::Destructor(napi_env env,
+                          void* nativeObject,
+                          void* /*finalize_hint*/) {
+  reinterpret_cast<MyObject*>(nativeObject)->~MyObject();
+}
+
+#define DECLARE_NAPI_METHOD(name, func)                                        \
+  { name, 0, func, 0, 0, 0, napi_default, 0 }
+
+//=====以下還沒改================
 Napi::Object MyObject::Init(Napi::Env env, Napi::Object exports) {
   Napi::HandleScope scope(env);
 
