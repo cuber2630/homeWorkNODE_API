@@ -1,6 +1,11 @@
 {
     "files.associations": {
         "string": "cpp",
-        "xstring": "cpp"
+        "xstring": "cpp",
+        "thread": "cpp",
+        "xlocale": "cpp",
+        "xlocnum": "cpp",
+        "system_error": "cpp",
+        "iosfwd": "cpp"
     }
 }
